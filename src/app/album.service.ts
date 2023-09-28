@@ -49,6 +49,10 @@ export class AlbumService {
    protected photoSubject: BehaviorSubject<Photo[]> = new BehaviorSubject<Photo[]>([]);
    photos$: Observable<Photo[]> = this.photoSubject as Observable<Photo[]>;
 
+   /** Subject that is updated when we update albums. */
+   protected albumSubject: BehaviorSubject<Album[]> = new BehaviorSubject<Album[]>([]);
+   albums$: Observable<Album[]> = this.albumSubject as Observable<Album[]>;
+
    constructor(private http: HttpClient) { }
 
    /**
@@ -78,5 +82,22 @@ export class AlbumService {
             this.photoSubject.next(data);
          }
       )
+   }
+
+   /**
+    * Update the list of known albums.
+    */
+   updateAlbums(): Observable<Album[]> {
+      let res = this.http.get(
+         'https://jsonplaceholder.typicode.com/albums'
+      );
+
+      res.subscribe(
+         (data: any) => {
+            this.albumSubject.next(data);
+         }
+      )
+
+      return this.albumSubject.asObservable();
    }
 }

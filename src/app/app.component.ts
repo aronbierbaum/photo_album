@@ -1,7 +1,7 @@
-import { Subscription } from 'rxjs';
+import { Subscription, first } from 'rxjs';
 
 import { Component } from '@angular/core';
-import { AlbumService, Photo } from './album.service';
+import { Album, AlbumService, Photo } from './album.service';
 
 @Component({
    selector: 'app-root',
@@ -9,14 +9,18 @@ import { AlbumService, Photo } from './album.service';
    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-   /** Set initial value for album. */
-   albumId: string = '';
+   /** List of known albums. */
+   public albums: Album[] = [];
+
+   /** Currently selected album. */
+   public selectedAlbum: number = -1;
 
    /** List of photos in the current album. */
    public photos: Photo[] = [];
 
    /** Subscription to the services's observers. */
    private subscription: Subscription | null = null;
+   private albumSub: Subscription | null = null;
 
    constructor(private albumSrv: AlbumService) {
    }
@@ -29,28 +33,36 @@ export class AppComponent {
       this.subscription = this.albumSrv.photos$.subscribe((photos) => {
          this.photos = photos;
       });
-
+      this.albumSub = this.albumSrv.albums$.subscribe((albums) => {
+         this.albums = albums;
+      });
 
       // Start with an initial album selected.
-      this.albumId = '1';
-      this.albumSrv.setAlbum('1');
+      this.albumSrv.updateAlbums().pipe(first()).subscribe((albums: Album[]) => {
+         this.selectedAlbum = 1;
+         this.albumSrv.setAlbum('1');
+      })
    }
 
    /**
     * Called before Angular destroys the component.
     */
    ngOnDestroy(): void {
-      // Unsubscribe from the observable.
+      // Unsubscribe from the observables.
       if (this.subscription != null) {
          this.subscription.unsubscribe();
          this.subscription = null;
       }
+      if (this.albumSub != null) {
+         this.albumSub.unsubscribe();
+         this.albumSub = null;
+      }
    }
 
    /**
-    * Called when the album ID has been changed.
+    * Called when an album is selected by the user.
     */
-   filterAlbum() {
-      this.albumSrv.setAlbum(this.albumId);
+   onAlbumChange(event: any) {
+      this.albumSrv.setAlbum(event.value);
    }
 }

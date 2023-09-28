@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { PhotoComponent } from './photo/photo.component';
       MatGridListModule,
       MatInputModule,
       MatFormFieldModule,
+      MatSelectModule,
       MatToolbarModule,
       ReactiveFormsModule
    ],

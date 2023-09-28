@@ -3,9 +3,14 @@
       <mat-toolbar color="primary">Photo Album Viewer</mat-toolbar>
 
       <div class="toolbar">
-         <mat-form-field appearance="fill" class="album-select-field">
-            <mat-label>Album ID</mat-label>
-            <input matInput autocomplete="off" type="number" [(ngModel)]="albumId" (keyup)="filterAlbum()"/>
+         <!-- Combobox with all albums -->
+         <mat-form-field class="album-select-field">
+            <mat-label>Album</mat-label>
+            <mat-select [(ngModel)]="selectedAlbum" (selectionChange)="onAlbumChange($event)">
+               <mat-option *ngFor="let album of albums" [value]="album.id">
+               {{album.title}}
+               </mat-option>
+            </mat-select>
          </mat-form-field>
       </div>
 
@@ -15,7 +20,5 @@
             <app-photo [photo]="photo"></app-photo>
          </ng-container>
       </div>
-
-
    </section>
 </main>
