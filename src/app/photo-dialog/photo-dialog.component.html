@@ -1,0 +1,6 @@
+<div class="container">
+   <div class="center" *ngIf="photo != null">
+      <div *ngIf="loading">Loading...</div>
+      <img [hidden]="loading" (load)="onLoad()" src="{{photo.url}}" alt="Image Failed to Load"/>
+   </div>
+</div>

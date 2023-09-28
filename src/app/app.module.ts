@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
@@ -13,11 +14,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { PhotoComponent } from './photo/photo.component';
+import { PhotoDialogComponent } from './photo-dialog/photo-dialog.component';
 
 @NgModule({
    declarations: [
        AppComponent,
-       PhotoComponent
+       PhotoComponent,
+       PhotoDialogComponent
    ],
    imports: [
       BrowserAnimationsModule,
@@ -25,6 +28,7 @@ import { PhotoComponent } from './photo/photo.component';
       FormsModule,
       HttpClientModule,
       MatCardModule,
+      MatDialogModule,
       MatGridListModule,
       MatInputModule,
       MatFormFieldModule,

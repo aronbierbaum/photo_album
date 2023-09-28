@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { PhotoComponent } from './photo.component';
 import { Photo } from '../album.service';
@@ -11,7 +12,7 @@ describe('PhotoComponent', () => {
 
    beforeEach(() => {
       TestBed.configureTestingModule({
-         imports: [MatCardModule],
+         imports: [MatCardModule, MatDialogModule],
          declarations: [PhotoComponent]
       });
       fixture = TestBed.createComponent(PhotoComponent);
@@ -23,5 +24,7 @@ describe('PhotoComponent', () => {
 
    it('should create', () => {
       expect(component).toBeTruthy();
+
+      component.onShowImage();
    });
 });
