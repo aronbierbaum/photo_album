@@ -1,1 +1,21 @@
-<h1>Photo Album Viewer</h1>
+<main>
+   <section class="content">
+      <mat-toolbar color="primary">Photo Album Viewer</mat-toolbar>
+
+      <div class="toolbar">
+         <mat-form-field appearance="fill" class="album-select-field">
+            <mat-label>Album ID</mat-label>
+            <input matInput autocomplete="off" type="number" [(ngModel)]="albumId" (keyup)="filterAlbum()"/>
+         </mat-form-field>
+      </div>
+
+      <!-- List of all images in the selected album -->
+      <div class="album-container responsive-grid">
+         <ng-container *ngFor="let photo of photos">
+            <app-photo [photo]="photo"></app-photo>
+         </ng-container>
+      </div>
+
+
+   </section>
+</main>
