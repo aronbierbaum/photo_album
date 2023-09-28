@@ -1,0 +1,30 @@
+{
+   // Configure glob patterns for excluding files and folders.
+   "files.exclude": {
+      "**/.git": true,
+      "**/.vscode": true,
+      "coverage": true,
+   },
+
+   "files.associations": {
+      "tslint.json": "jsonc",
+      "angular.json": "jsonc",
+      "tsconfig*.json": "jsonc"
+   },
+
+   "editor.tabSize": 3,
+
+   // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
+   "editor.detectIndentation": false,
+
+   // When enabled, will trim trailing whitespace when you save a file.
+   "files.trimTrailingWhitespace": true,
+
+   "files.insertFinalNewline": true,
+
+   "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+   },
+   "eslint.debug": true,
+   "explorer.compactFolders": false,
+}
