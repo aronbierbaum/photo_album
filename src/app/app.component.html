@@ -15,10 +15,17 @@
       </div>
 
       <!-- List of all images in the selected album -->
-      <div class="album-container responsive-grid">
-         <ng-container *ngFor="let photo of photos">
-            <app-photo [photo]="photo"></app-photo>
-         </ng-container>
-      </div>
+      <ng-container *ngIf="selectedAlbum >= 0">
+         <div class="album-container responsive-grid">
+            <ng-container *ngFor="let photo of photos">
+               <app-photo [photo]="photo"></app-photo>
+            </ng-container>
+         </div>
+      </ng-container>
+
+      <!-- Show help text if we don't have a selected item.-->
+      <ng-container *ngIf="selectedAlbum < 0">
+         <h1 class="help-text">Select an album to view photos.</h1>
+      </ng-container>
    </section>
 </main>
